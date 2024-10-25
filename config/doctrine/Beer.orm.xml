@@ -1,0 +1,14 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                   https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+    <entity name="App\Entity\Beer" table="beer" repository-class="App\Repository\BeerRepository">
+        <id name="id" type="integer"/>
+        <field name="name" length="100"/>
+        <field name="style" length="100"/>
+        <field name="abv" type="decimal" precision="3" scale="1" nullable="true"/>
+        <many-to-one field="brewery" target-entity="App\Entity\Brewery" inversed-by="beers">
+            <join-column name="brewery_id" nullable="false" />
+        </many-to-one>
+    </entity>
+</doctrine-mapping>
